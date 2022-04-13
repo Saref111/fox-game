@@ -1,4 +1,4 @@
-import { PlayerCharsEnum as Chars, PlayerStateEnum as StateEnum } from './constants.js'
+import { PlayerCharsEnum as Chars, PlayerStateEnum as StateEnum, SpriteFramesCount } from './constants.js'
 import { Sitting, Running, Jumping, Falling } from './playerState.js'
 import { Keys } from './constants.js'
 
@@ -8,16 +8,28 @@ export default class Player {
         this.width = Chars.WIDTH
         this.height = Chars.HEIGHT
         this.x = Chars.BASE_X_POSITION
-        this.y = this.game.height - this.height
+        this.y = this.game.height - this.height - Chars.BASE_Y_POSITION
         this.image = document.getElementById(Chars.IMAGE_ID)
         this.weight = Chars.WEIGHT
         this.frameX = 0
         this.frameY = 0
+        this.maxFrame = SpriteFramesCount.FALLING
+        this.fps = 20
+        this.frameInterval = 1000 / this.fps
+        this.frameTimer = 0 
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]
-        this.setState(StateEnum.RUNNING)
+        this.setState(StateEnum.FALLING)
+    }
+
+    toggleFrame() { 
+        if (this.frameX < this.maxFrame) {
+            this.frameX++
+        } else {
+            this.frameX = 0
+        }
     }
 
     setSpeedByKeys(keys) {
@@ -35,17 +47,24 @@ export default class Player {
         this.currentState.enter()
     }
 
-    update(keys) {
+    update(keys, delta) {
         this.currentState.handleInput(keys)
 
         this.moveX(keys)
         this.moveY(keys)
         this.amendPosition()
+
+        if (this.frameTimer > this.frameInterval) {            
+            this.frameTimer = 0
+            this.toggleFrame()
+        } else {
+            this.frameTimer += delta    
+        }
     }
 
     draw(context) {
         context.drawImage(
-            this.image, 
+            this.image,
             this.frameX * this.width, 
             this.frameY * this.height, 
             this.width, 

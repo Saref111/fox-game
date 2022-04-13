@@ -1,3 +1,4 @@
+
 export const CanvasCharsEnum = {
     WIDTH: 500,
     HEIGHT: 500,
@@ -35,4 +36,11 @@ export const SpritePositions = {
     RUNNING: 3,
     JUMPING: 1,
     FALLING: 2,
+}
+
+export const SpriteFramesCount = {
+    SITTING: 4,
+    RUNNING: 8,
+    JUMPING: 6,
+    FALLING: 6,
 }

@@ -41,9 +41,7 @@ export class Running extends State {
     handleInput(keys) {
         if (keys.has(Keys.DOWN)) {
             this.player.setState(StateEnum.SITTING)
-        }
-
-        if (keys.has(Keys.UP)) {
+        } else if (keys.has(Keys.UP)) {
             this.player.setState(StateEnum.JUMPING)
         }
     }

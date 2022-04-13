@@ -9,12 +9,12 @@ export default class Game {
         this.input = new InputHandler()
     }
 
-    update() {
-        this.player.update(this.input.keys)
+    update(delta) {
+        this.player.update(this.input.keys, delta)
     }
-    draw() {
+    draw(delta) {
         this.clear()
-        this.update()
+        this.update(delta)
         this.player.draw(this.ctx)
     }
     clear() {
