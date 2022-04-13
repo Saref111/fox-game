@@ -1,5 +1,5 @@
 import Game from './game.js'
-import {CanvasCharsEnum} from './constants.js'
+import { CanvasCharsEnum } from './constants.js'
 import { animate } from './helpers.js'
 
 window.addEventListener('load', () => {

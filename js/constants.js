@@ -8,4 +8,5 @@ export const PlayerCharsEnum = {
     HEIGHT: 91.3,
     BASE_X_POSITION: 0,
     BASE_Y_POSITION: 100,
+    IMAGE_ID: 'player',
 }
