@@ -1,5 +1,4 @@
 import Game from './game.js'
-import Player from './player.js'
 import {CanvasCharsEnum} from './constants.js'
 
 window.addEventListener('load', () => {
@@ -8,7 +7,11 @@ window.addEventListener('load', () => {
     canvas.width = CanvasCharsEnum.WIDTH
     canvas.height = CanvasCharsEnum.HEIGHT
 
-    const game = new Game(canvas.width, canvas.height, ctx)
+    const game = new Game({
+        width: canvas.width, 
+        height: canvas.height, 
+        ctx,
+    })
 
     game.draw()
 })
