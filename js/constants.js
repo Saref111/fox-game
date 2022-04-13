@@ -27,9 +27,12 @@ export const PlayerStateEnum = {
     SITTING: 0,
     RUNNING: 1,
     JUMPING: 2,
+    FALLING: 3,
 }
 
 export const SpritePositions = { 
     SITTING: 5,
     RUNNING: 3,
+    JUMPING: 1,
+    FALLING: 2,
 }

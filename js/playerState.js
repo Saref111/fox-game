@@ -1,4 +1,9 @@
-import { PlayerStateEnum as StateEnum, Keys, SpritePositions } from "./constants.js"
+import {
+        PlayerStateEnum as StateEnum, 
+        Keys, 
+        SpritePositions, 
+        PlayerCharsEnum as Chars,
+    } from "./constants.js"
 
 class State {
     constructor(state) {
@@ -36,6 +41,47 @@ export class Running extends State {
     handleInput(keys) {
         if (keys.has(Keys.DOWN)) {
             this.player.setState(StateEnum.SITTING)
+        }
+
+        if (keys.has(Keys.UP)) {
+            this.player.setState(StateEnum.JUMPING)
+        }
+    }
+}
+
+export class Jumping extends State {
+    constructor(player) {
+        super(StateEnum.JUMPING)
+        this.player = player
+    }
+
+    enter() {
+        if (this.player.isOnTheGround()) {
+            this.player.velocity = -this.player.maxSpeed * Chars.JUMP_MULTIPLIER
+        }
+        this.player.frameY = SpritePositions.JUMPING
+    }
+
+    handleInput(keys) {
+        if (this.player.velocity > this.player.weight) {
+            this.player.setState(StateEnum.FALLING)
+        }
+    }
+}
+
+export class Falling extends State {
+    constructor(player) {
+        super(StateEnum.FALLING)
+        this.player = player
+    }
+
+    enter() {
+        this.player.frameY = SpritePositions.FALLING
+    }
+
+    handleInput(keys) {
+        if (this.player.isOnTheGround()) {
+            this.player.setState(StateEnum.RUNNING)
         }
     }
 }

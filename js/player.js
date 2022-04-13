@@ -1,5 +1,5 @@
-import { PlayerCharsEnum as Chars } from './constants.js'
-import { Sitting, Running } from './playerState.js'
+import { PlayerCharsEnum as Chars, PlayerStateEnum as StateEnum } from './constants.js'
+import { Sitting, Running, Jumping, Falling } from './playerState.js'
 import { Keys } from './constants.js'
 
 export default class Player {
@@ -16,9 +16,8 @@ export default class Player {
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
-        this.states = [new Sitting(this), new Running(this)]
-        this.currentState = this.states[0]
-        this.currentState.enter()
+        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]
+        this.setState(StateEnum.RUNNING)
     }
 
     setSpeedByKeys(keys) {
@@ -31,14 +30,7 @@ export default class Player {
         }
     }
 
-    setVelocityByKeys(keys, onGround) {
-        if (keys.has(Keys.UP) && onGround) {
-            this.velocity = -this.maxSpeed * Chars.JUMP_MULTIPLIER
-        } 
-    }
-
     setState(state) {
-        // debugger
         this.currentState = this.states[state]
         this.currentState.enter()
     }
@@ -83,7 +75,7 @@ export default class Player {
 
     moveY(keys) {
         const onGround = this.isOnTheGround()
-        this.setVelocityByKeys(keys, onGround)
+        
         this.y += this.velocity
         if (!onGround) {
             this.velocity += this.weight
