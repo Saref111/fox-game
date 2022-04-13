@@ -10,6 +10,7 @@ export const PlayerCharsEnum = {
     BASE_Y_POSITION: 100,
     IMAGE_ID: 'player',
     MAX_SPEED: 10,
+    OFFSET: 7,
 }
 
 export const Keys = {

@@ -25,12 +25,12 @@ export default class Player {
     }
 
     setVelocityByKeys(keys) {
-        if (keys.has(Keys.UP)) {
+        if (keys.has(Keys.UP) && this.isOnTheGround()) {
             this.velocity = -this.maxSpeed
         } else if (keys.has(Keys.DOWN)) {
             this.velocity = this.maxSpeed
         } else {
-            this.velocity = 0
+            // this.velocity = 0
         }
     }
 
@@ -47,15 +47,16 @@ export default class Player {
     }
 
     isOnTheGround() {
-        return this.y + this.height === this.game.height
+        return this.y + this.height >= this.game.height
     }
 
     update(keys) {
         this.x += this.speed
-        this.y += this.velocity
-
         this.setSpeedByKeys(keys)
+
+        this.y += this.velocity
         this.setVelocityByKeys(keys)
+
         this.amendPosition()
     }
 
