@@ -14,7 +14,7 @@ export default class Player {
     }
 
     draw(context) {
-        context.fillStyle = '#fff'
+        context.fillStyle = '#000'
         context.fillRect(this.x, this.y, this.width, this.height)
     }
 }
