@@ -19,8 +19,9 @@ export class Sitting extends State {
     }
 
     enter() {
-        this.player.frameY = SpritePositions.SITTING
+        this.player.frameX = 0
         this.player.maxFrame = SpriteFramesCount.SITTING
+        this.player.frameY = SpritePositions.SITTING
     }
 
     handleInput(keys) {
@@ -37,8 +38,9 @@ export class Running extends State {
     }
 
     enter() {
-        this.player.frameY = SpritePositions.RUNNING
+        this.player.frameX = 0
         this.player.maxFrame = SpriteFramesCount.RUNNING
+        this.player.frameY = SpritePositions.RUNNING
     }
 
     handleInput(keys) {
@@ -57,11 +59,13 @@ export class Jumping extends State {
     }
 
     enter() {
+        this.player.frameX = 0
+        this.player.maxFrame = SpriteFramesCount.JUMPING
+        this.player.frameY = SpritePositions.JUMPING
+
         if (this.player.isOnTheGround()) {
             this.player.velocity = -this.player.maxSpeed * Chars.JUMP_MULTIPLIER
         }
-        this.player.frameY = SpritePositions.JUMPING
-        this.player.maxFrame = SpriteFramesCount.JUMPING
     }
 
     handleInput(keys) {
@@ -78,8 +82,9 @@ export class Falling extends State {
     }
 
     enter() {
-        this.player.frameY = SpritePositions.FALLING
+        this.player.frameX = 0
         this.player.maxFrame = SpriteFramesCount.FALLING
+        this.player.frameY = SpritePositions.FALLING
     }
 
     handleInput(keys) {

@@ -1,4 +1,9 @@
-import { PlayerCharsEnum as Chars, PlayerStateEnum as StateEnum, SpriteFramesCount } from './constants.js'
+import { 
+    PlayerCharsEnum as Chars, 
+    PlayerStateEnum as StateEnum, 
+    SpriteFramesCount, 
+    FPS
+} from './constants.js'
 import { Sitting, Running, Jumping, Falling } from './playerState.js'
 import { Keys } from './constants.js'
 
@@ -14,14 +19,14 @@ export default class Player {
         this.frameX = 0
         this.frameY = 0
         this.maxFrame = SpriteFramesCount.FALLING
-        this.fps = 20
+        this.fps = FPS
         this.frameInterval = 1000 / this.fps
         this.frameTimer = 0 
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]
-        this.setState(StateEnum.FALLING)
+        this.setState(StateEnum.SITTING)
     }
 
     toggleFrame() { 
@@ -83,13 +88,13 @@ export default class Player {
             this.x = this.game.width - this.width
         } else if (this.y < 0) {
             this.y = 0
-        } else if (this.y + this.height > this.game.height) {
-            this.y = this.game.height - this.height
+        } else if (this.y + this.height > this.game.height - Chars.BASE_Y_POSITION) {
+            this.y = this.game.height - this.height - Chars.BASE_Y_POSITION
         }
     }
 
     isOnTheGround() {
-        return this.y + this.height >= this.game.height
+        return this.y + this.height >= this.game.height - Chars.BASE_Y_POSITION
     }
 
     moveY(keys) {

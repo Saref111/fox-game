@@ -8,12 +8,12 @@ export const PlayerCharsEnum = {
     WIDTH: 100,
     HEIGHT: 91.3,
     BASE_X_POSITION: 0,
-    BASE_Y_POSITION: 100,
+    BASE_Y_POSITION: 40,
     IMAGE_ID: 'player',
     MAX_SPEED: 10,
     OFFSET: 7,
     WEIGHT: 1,
-    JUMP_MULTIPLIER: 2.7,
+    JUMP_MULTIPLIER: 2.5,
 }
 
 export const Keys = {
@@ -44,3 +44,5 @@ export const SpriteFramesCount = {
     JUMPING: 6,
     FALLING: 6,
 }
+
+export const FPS = 24
