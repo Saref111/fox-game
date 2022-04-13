@@ -10,3 +10,10 @@ export const PlayerCharsEnum = {
     BASE_Y_POSITION: 100,
     IMAGE_ID: 'player',
 }
+
+export const Keys = {
+    LEFT: 'ArrowLeft',
+    RIGHT: 'ArrowRight',
+    UP: 'ArrowUp',
+    DOWN: 'ArrowDown',
+}
