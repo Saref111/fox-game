@@ -26,7 +26,7 @@ export default class Player {
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]
-        this.setState(StateEnum.SITTING)
+        this.setState(StateEnum.SITTING, 0)
     }
 
     toggleFrame() { 
@@ -47,8 +47,9 @@ export default class Player {
         }
     }
 
-    setState(state) {
+    setState(state, speed) {
         this.currentState = this.states[state]
+        this.game.speed = this.game.maxSpeed * speed
         this.currentState.enter()
     }
 
