@@ -1,5 +1,6 @@
 import Game from './game.js'
 import {CanvasCharsEnum} from './constants.js'
+import { animate } from './helpers.js'
 
 window.addEventListener('load', () => {
     const canvas = document.getElementById('canvas_1')
@@ -13,5 +14,6 @@ window.addEventListener('load', () => {
         ctx,
     })
 
-    game.draw()
+    animate(game)
+    
 })

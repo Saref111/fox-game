@@ -13,6 +13,6 @@ export default class Game {
         this.ctx.fillRect(0, 0, this.width, this.height)
     }
     draw() {
-        this.player.draw(this.ctx)
+        this.player.draw(this.ctx)  
     }
 }
