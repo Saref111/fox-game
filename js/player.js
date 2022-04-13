@@ -9,6 +9,7 @@ export default class Player {
         this.x = Chars.BASE_X_POSITION
         this.y = this.game.height - this.height
         this.image = document.getElementById(Chars.IMAGE_ID)
+        this.weight = Chars.WEIGHT
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
@@ -24,14 +25,10 @@ export default class Player {
         }
     }
 
-    setVelocityByKeys(keys) {
-        if (keys.has(Keys.UP) && this.isOnTheGround()) {
-            this.velocity = -this.maxSpeed
-        } else if (keys.has(Keys.DOWN)) {
-            this.velocity = this.maxSpeed
-        } else {
-            // this.velocity = 0
-        }
+    setVelocityByKeys(keys, onGround) {
+        if (keys.has(Keys.UP) && onGround) {
+            this.velocity = -this.maxSpeed * Chars.JUMP_MULTIPLIER
+        } 
     }
 
     amendPosition() {
@@ -50,13 +47,25 @@ export default class Player {
         return this.y + this.height >= this.game.height
     }
 
-    update(keys) {
+    moveY(keys) {
+        const onGround = this.isOnTheGround()
+        this.setVelocityByKeys(keys, onGround)
+        this.y += this.velocity
+        if (!onGround) {
+            this.velocity += this.weight
+        } else if (this.velocity > 0) {
+            this.velocity = 0
+        }
+    }
+
+    moveX(keys) {
         this.x += this.speed
         this.setSpeedByKeys(keys)
+    }   
 
-        this.y += this.velocity
-        this.setVelocityByKeys(keys)
-
+    update(keys) {
+        this.moveX(keys)
+        this.moveY(keys)
         this.amendPosition()
     }
 

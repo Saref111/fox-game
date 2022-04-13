@@ -11,6 +11,8 @@ export const PlayerCharsEnum = {
     IMAGE_ID: 'player',
     MAX_SPEED: 10,
     OFFSET: 7,
+    WEIGHT: 1,
+    JUMP_MULTIPLIER: 2.7,
 }
 
 export const Keys = {
