@@ -9,6 +9,7 @@ export const PlayerCharsEnum = {
     BASE_X_POSITION: 0,
     BASE_Y_POSITION: 100,
     IMAGE_ID: 'player',
+    MAX_SPEED: 10,
 }
 
 export const Keys = {
