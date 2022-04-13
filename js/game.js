@@ -13,8 +13,8 @@ export default class Game {
         this.player.update(this.input.keys)
     }
     draw() {
-        this.update()
         this.clear()
+        this.update()
         this.player.draw(this.ctx)
     }
     clear() {

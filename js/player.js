@@ -1,4 +1,5 @@
 import { PlayerCharsEnum as Chars } from './constants.js'
+import { Sitting, Running } from './playerState.js'
 import { Keys } from './constants.js'
 
 export default class Player {
@@ -10,9 +11,14 @@ export default class Player {
         this.y = this.game.height - this.height
         this.image = document.getElementById(Chars.IMAGE_ID)
         this.weight = Chars.WEIGHT
+        this.frameX = 0
+        this.frameY = 0
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
+        this.states = [new Sitting(this), new Running(this)]
+        this.currentState = this.states[0]
+        this.currentState.enter()
     }
 
     setSpeedByKeys(keys) {
@@ -29,6 +35,34 @@ export default class Player {
         if (keys.has(Keys.UP) && onGround) {
             this.velocity = -this.maxSpeed * Chars.JUMP_MULTIPLIER
         } 
+    }
+
+    setState(state) {
+        // debugger
+        this.currentState = this.states[state]
+        this.currentState.enter()
+    }
+
+    update(keys) {
+        this.currentState.handleInput(keys)
+
+        this.moveX(keys)
+        this.moveY(keys)
+        this.amendPosition()
+    }
+
+    draw(context) {
+        context.drawImage(
+            this.image, 
+            this.frameX * this.width, 
+            this.frameY * this.height, 
+            this.width, 
+            this.height, 
+            this.x, 
+            this.y, 
+            this.width, 
+            this.height
+        )
     }
 
     amendPosition() {
@@ -61,15 +95,5 @@ export default class Player {
     moveX(keys) {
         this.x += this.speed
         this.setSpeedByKeys(keys)
-    }   
-
-    update(keys) {
-        this.moveX(keys)
-        this.moveY(keys)
-        this.amendPosition()
-    }
-
-    draw(context) {
-        context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height)
-    }
+    }  
 }

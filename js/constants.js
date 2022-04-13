@@ -22,3 +22,14 @@ export const Keys = {
     DOWN: 'ArrowDown',
     SPACE: 'Space',
 }
+
+export const PlayerStateEnum = {
+    SITTING: 0,
+    RUNNING: 1,
+    JUMPING: 2,
+}
+
+export const SpritePositions = { 
+    SITTING: 5,
+    RUNNING: 3,
+}
