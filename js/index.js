@@ -1,0 +1,14 @@
+import Game from './game.js'
+import Player from './player.js'
+import {CanvasCharsEnum} from './constants.js'
+
+window.addEventListener('load', () => {
+    const canvas = document.getElementById('canvas_1')
+    const ctx = canvas.getContext('2d')
+    canvas.width = CanvasCharsEnum.WIDTH
+    canvas.height = CanvasCharsEnum.HEIGHT
+
+    const game = new Game(canvas.width, canvas.height, ctx)
+
+    game.draw()
+})
