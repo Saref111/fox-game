@@ -8,12 +8,20 @@ export const PlayerCharsEnum = {
     WIDTH: 100,
     HEIGHT: 91.3,
     BASE_X_POSITION: 0,
-    BASE_Y_POSITION: 40,
+    BASE_Y_POSITION: 84,
     IMAGE_ID: 'player',
     MAX_SPEED: 10,
     OFFSET: 7,
     WEIGHT: 1,
-    JUMP_MULTIPLIER: 2.5,
+    JUMP_MULTIPLIER: 2.3,
+}
+
+export const AssetsIds = {
+    BOTTOM: 'layer-5',
+    CLOUDS: 'layer-3',
+    BUILDINGS: 'layer-4',
+    SKYSCRAPERS: 'layer-2',
+    BACKGROUND: 'layer-1',
 }
 
 export const Keys = {
