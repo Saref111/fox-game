@@ -12,7 +12,6 @@ export default class InputHandler {
         if (this.isControlKeyPressed(e.key)) {
             this.keys.add(e.key)
         }
-        console.log(this.keys);
     }
     
     keyupHandler(e) {
@@ -25,6 +24,7 @@ export default class InputHandler {
         return key === Keys.LEFT || 
                 key === Keys.RIGHT || 
                 key === Keys.UP || 
-                key === Keys.DOWN
+                key === Keys.DOWN ||
+                key === Keys.SPACE
     }
 }

@@ -10,9 +10,7 @@ export default class Game {
     }
 
     update() {
-        this.ctx.clearRect(0, 0, this.width, this.height)
-        this.ctx.fillStyle = '#fff'
-        this.ctx.fillRect(0, 0, this.width, this.height)
+        this.player.update(this.input.keys)
     }
     draw() {
         this.update()

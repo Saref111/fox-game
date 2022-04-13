@@ -16,4 +16,5 @@ export const Keys = {
     RIGHT: 'ArrowRight',
     UP: 'ArrowUp',
     DOWN: 'ArrowDown',
+    SPACE: 'Space',
 }
