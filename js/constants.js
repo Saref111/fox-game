@@ -37,6 +37,7 @@ export const PlayerStateEnum = {
     RUNNING: 1,
     JUMPING: 2,
     FALLING: 3,
+    ATTACK: 4,
 }
 
 export const SpritePositions = { 
@@ -44,6 +45,7 @@ export const SpritePositions = {
     RUNNING: 3,
     JUMPING: 1,
     FALLING: 2,
+    ATTACK: 6,
 }
 
 export const SpriteFramesCount = {
@@ -51,6 +53,7 @@ export const SpriteFramesCount = {
     RUNNING: 8,
     JUMPING: 6,
     FALLING: 6,
+    ATTACK: 6
 }
 
 export const FPS = 24

@@ -71,6 +71,8 @@ export class Jumping extends State {
     handleInput(keys) {
         if (this.player.velocity > this.player.weight) {
             this.player.setState(StateEnum.FALLING, 2)
+        } else if (keys.has(Keys.DOWN)) {
+            this.player.setState(StateEnum.ATTACK, 2)
         }
     }
 }
@@ -90,6 +92,29 @@ export class Falling extends State {
     handleInput(keys) {
         if (this.player.isOnTheGround()) {
             this.player.setState(StateEnum.RUNNING, 1)
+        }else if (keys.has(Keys.DOWN)) {
+            this.player.setState(StateEnum.ATTACK, 2)
         }
     }
 }
+
+export class Attack extends State {
+    constructor(player) {
+        super(StateEnum.ATTACK)
+        this.player = player
+    }
+
+    enter() {
+        this.player.frameX = 0
+        this.player.maxFrame = SpriteFramesCount.ATTACK
+        this.player.frameY = SpritePositions.ATTACK
+    }
+
+    handleInput(keys) {
+        if (this.player.isOnTheGround()) {
+            this.player.setState(StateEnum.RUNNING, 1)
+        }
+    }
+}
+
+export default [Sitting, Running, Jumping, Falling, Attack]

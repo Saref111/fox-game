@@ -4,7 +4,7 @@ import {
     SpriteFramesCount, 
     FPS
 } from './constants.js'
-import { Sitting, Running, Jumping, Falling } from './playerState.js'
+import states from './playerState.js'
 import { Keys } from './constants.js'
 
 export default class Player {
@@ -25,7 +25,7 @@ export default class Player {
         this.speed = 0
         this.velocity = 0
         this.maxSpeed = Chars.MAX_SPEED
-        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]
+        this.states = states.map((It) => new It(this))
         this.setState(StateEnum.SITTING, 0)
     }
 
