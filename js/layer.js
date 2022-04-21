@@ -42,17 +42,17 @@ export class Background {
         this.game = game
         this.width = 1667
         this.height = 500
-        this.layer5image = document.getElementById(AssetsIds.BOTTOM)
-        this.layer4image = document.getElementById(AssetsIds.BUILDINGS)
-        this.layer3image = document.getElementById(AssetsIds.CLOUDS)
-        this.layer2image = document.getElementById(AssetsIds.SKYSCRAPERS)
-        this.layer1image = document.getElementById(AssetsIds.BACKGROUND)
-        this.layer1 = new Layer(this.game, this.width, this.height, 0, this.layer1image)
-        this.layer2 = new Layer(this.game, this.width, this.height, 0.2, this.layer2image)
-        this.layer3 = new Layer(this.game, this.width, this.height, 0.4, this.layer3image)
-        this.layer4 = new Layer(this.game, this.width, this.height, 0.6, this.layer4image)
-        this.layer5 = new Layer(this.game, this.width, this.height, 0.8, this.layer5image)
-        this.layers = [this.layer1, this.layer2, this.layer3, this.layer4, this.layer5]
+        const selectors = Array.from(Object.values(AssetsIds)).sort()
+        this.layers = selectors.map((selector, i) => {
+            const image = document.getElementById(selector)
+            return new Layer(
+                this.game,
+                this.width,
+                this.height,
+                i === 0 ? 0 : i / 5,
+                image
+            )
+        })
     }
 
     update() {
