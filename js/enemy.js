@@ -24,6 +24,7 @@ export default class Enemy {
         this.state = null
         this.states = {}
         this.flapSpeed = getRandomNumber(4, 1)
+        this.sizeMultiplier = getRandomNumber(9, 2) / 10
         this.amendPosition()
 
         console.log(this);
@@ -59,11 +60,14 @@ export default class Enemy {
         return this.x + this.width < 0 || this.x > this.game.width || this.y + this.height < 0 || this.y > this.game.height
     }
     update(keys, delta) {
+        this.x += this.speed 
+        this.y += this.speed 
+        // this.amendPosition()
         
-            this.x += this.speed 
-            this.y += this.speed 
-        
-        this.amendPosition()
+        if (this.isOutOfBounds()) {
+            this.speed *= -1
+        }
+
 
         if (this.frameTimer > this.frameInterval * this.flapSpeed) {            
             this.frameTimer = 0
@@ -83,8 +87,8 @@ export default class Enemy {
             this.height, 
             this.x, 
             this.y, 
-            this.width, 
-            this.height 
+            this.width * this.sizeMultiplier, 
+            this.height  * this.sizeMultiplier
         );
     }
 } 
