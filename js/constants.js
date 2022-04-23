@@ -22,6 +22,7 @@ export const AssetsIds = {
     BUILDINGS: 'layer-4',
     SKYSCRAPERS: 'layer-2',
     BACKGROUND: 'layer-1',
+    ENEMY: 'enemy',
 }
 
 export const Keys = {

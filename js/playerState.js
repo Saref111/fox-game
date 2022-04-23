@@ -72,7 +72,7 @@ export class Jumping extends State {
         if (this.player.velocity > this.player.weight) {
             this.player.setState(StateEnum.FALLING, 2)
         } else if (keys.has(Keys.DOWN)) {
-            this.player.setState(StateEnum.ATTACK, 2)
+            this.player.setState(StateEnum.ATTACK, 4)
         }
     }
 }
