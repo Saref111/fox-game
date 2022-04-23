@@ -23,8 +23,10 @@ export default class Enemy {
         this.direction = 0
         this.state = null
         this.states = {}
-        console.log(this);
+        this.flapSpeed = getRandomNumber(4, 1)
         this.amendPosition()
+
+        console.log(this);
     }
 
     toggleFrame() { 
@@ -53,15 +55,17 @@ export default class Enemy {
         }
     }
 
+    isOutOfBounds() {
+        return this.x + this.width < 0 || this.x > this.game.width || this.y + this.height < 0 || this.y > this.game.height
+    }
     update(keys, delta) {
-        this.x += this.speed 
-        this.y += this.speed 
+        
+            this.x += this.speed 
+            this.y += this.speed 
+        
         this.amendPosition()
 
-
-        console.log(this.frameTimer, this.frameInterval);
-        console.log(this.frameTimer > this.frameInterval);
-        if (this.frameTimer > this.frameInterval) {            
+        if (this.frameTimer > this.frameInterval * this.flapSpeed) {            
             this.frameTimer = 0
             this.toggleFrame()
             

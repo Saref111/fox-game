@@ -11,7 +11,7 @@ export default class Game {
         this.maxSpeed = 3
         this.background = new Background(this)
         this.player = new Player(this)
-        this.enemies = [new Enemy(this)]
+        this.enemies = [new Enemy(this),new Enemy(this), new Enemy(this)]
         this.input = new InputHandler()
     }
 
