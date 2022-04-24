@@ -26,6 +26,7 @@ export default class InputHandler {
     }
     
     removeKey(e) {
+        console.log(e.key);
         if (e.key) {
             this.keys.delete(e.key)
         } else {
