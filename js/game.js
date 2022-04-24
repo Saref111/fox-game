@@ -14,7 +14,7 @@ export default class Game {
         this.background = new Background(this)
         this.player = new Player(this)
         this.playerDeathCount = 0  
-        this.enemies = [new Enemy(this)]
+        this.enemies = [new Enemy(this), new Enemy(this), new Enemy(this)]
         this.fragsCount = 0
         this.input = new InputHandler()
         this.explosions = []
@@ -25,18 +25,26 @@ export default class Game {
         this.bgSound.play()
     }
 
+    addExplosion(target) { 
+        this.explosions.push(new Explosion(target.x, target.y))
+    }
+
+    removeEnemy(enemy) {
+        this.enemies.splice(this.enemies.indexOf(enemy), 1)
+    }
+
     checkCollisions(enemy) { 
 
         if (this.player.checkCollision(enemy)) {
             switch (true) {
                 case this.player.currentState instanceof Attack:
-                    this.explosions.push(new Explosion(enemy.x, enemy.y))
-                    this.enemies.splice(this.enemies.indexOf(enemy), 1)
+                    this.removeEnemy(enemy)
+                    this.addExplosion(enemy)
                     setTimeout(() => this.addEnemy(), 2000)
                     this.fragsCount++
                     break;
                 default:
-                    this.explosions.push(new Explosion(this.player.x, this.player.y))
+                    this.addExplosion(this.player)
                     this.player.reset()
                     this.playerDeathCount++
             }
@@ -57,7 +65,6 @@ export default class Game {
         })
         this.explosions.forEach((explosion) => {
             explosion.update(delta)
-
             if (explosion.frameX === 4) {
                 this.explosions.splice(this.explosions.indexOf(explosion), 1)
             }
