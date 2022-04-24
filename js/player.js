@@ -30,9 +30,9 @@ export default class Player {
         this.jumpSound = new Audio()
         this.fallSound = new Audio()
         this.attackSound = new Audio()
-        this.jumpSound.src = '../assets/swish_2.wav'
-        this.fallSound.src = '../assets/jumpland.wav'
-        this.attackSound.src = '../assets/swish_3.wav'
+        this.jumpSound.src = './assets/swish_2.wav'
+        this.fallSound.src = './assets/jumpland.wav'
+        this.attackSound.src = './assets/swish_3.wav'
     }
 
     toggleFrame() { 
