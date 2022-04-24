@@ -28,7 +28,7 @@ body {
     max-height: 100%;
 }
 
-.controls {
+.controls {    
     position: fixed;
     top: 65%;
     left: 50%;
@@ -44,6 +44,8 @@ body {
         "left sit-attack right";
 }
 
+
+
 .controls button {
     background-color: #fff;
     border: 1px solid #000;
@@ -53,21 +55,36 @@ body {
     cursor: pointer;
 }
 
-#jump {
+.controls button:hover {
+
+    background-color: #000;
+    color: #fff;
+    opacity: 0.5;
+}
+
+
+.controls button:active {
+    background-color: green;
+    color: #fff;
+    opacity: 0.2 ;
+}
+
+#ArrowUp {
     grid-area: jump;
 }
 
-#left {
+#ArrowLeft {
     grid-area: left;
 }
 
-#right {
+#ArrowRight {
     grid-area: right;
 }
 
-#sit-attack {
+#ArrowDown {
     grid-area: sit-attack;
 }
+
 
 img {
     display: none;
