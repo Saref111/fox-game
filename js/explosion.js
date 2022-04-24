@@ -17,7 +17,7 @@ export default class Explosion {
         this.sizeMultiplier = sizeMultiplier
         this.angle = Math.random() * 6.2
         this.sound = new Audio()
-        this.sound.src = '../assets/boom.wav'
+        this.sound.src = './assets/boom.wav'
     }
 
     toggleFrame() {
