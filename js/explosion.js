@@ -10,13 +10,12 @@ export default class Explosion {
         this.frameX = 0
         this.frameY = 0
         this.maxFrame = 4
-        this.frameCount = 0
         this.frameTimer = 0
         this.frameInterval = 1000 / FPS
-        this.direction = 0
         this.state = null
         this.states = {}
         this.sizeMultiplier = sizeMultiplier
+        this.angle = Math.random() * 6.2
     }
 
     toggleFrame() {
@@ -36,16 +35,20 @@ export default class Explosion {
     }
 
     draw(ctx) {
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(this.angle)
         ctx.drawImage(
             this.image,
             this.frameX * this.width,
             this.frameY * this.height,
             this.width,
             this.height,
-            this.x,
-            this.y,
+            0 - this.width / 2 * this.sizeMultiplier,
+            0 - this.height / 2 * this.sizeMultiplier,
             this.width * this.sizeMultiplier,
             this.height * this.sizeMultiplier
         )
+        ctx.restore()
     }
 }

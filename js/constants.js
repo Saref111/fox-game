@@ -58,4 +58,4 @@ export const SpriteFramesCount = {
     ATTACK: 6
 }
 
-export const FPS = 24
+export const FPS = 5

@@ -20,25 +20,23 @@ export default class Game {
         this.explosions = []
     }
 
-    checkCollisions() { 
-        this.enemies.forEach((enemy) => {
-            if (this.player.checkCollision(enemy)) {
-                switch (true) {
-                    case this.player.currentState instanceof Attack:
-                        this.explosions.push(new Explosion(this.player.x, this.player.y))
-                        this.enemies.splice(this.enemies.indexOf(enemy), 1)
-                        setTimeout(() => {
-                            this.addEnemy()
-                        }, 2000)
-                        this.fragsCount++
-                        break;
-                    default:
-                        this.explosions.push(new Explosion(this.player.x, this.player.y))
-                        this.player.reset()
-                        this.playerDeathCount++
-                }
+    checkCollisions(enemy) { 
+
+        if (this.player.checkCollision(enemy)) {
+            switch (true) {
+                case this.player.currentState instanceof Attack:
+                    this.explosions.push(new Explosion(enemy.x, enemy.y))
+                    this.enemies.splice(this.enemies.indexOf(enemy), 1)
+                    setTimeout(() => this.addEnemy(), 2000)
+                    this.fragsCount++
+                    break;
+                default:
+                    this.explosions.push(new Explosion(this.player.x, this.player.y))
+                    this.player.reset()
+                    this.playerDeathCount++
             }
-        })
+        }
+
     }
 
     addEnemy() {
@@ -50,6 +48,7 @@ export default class Game {
         this.player.update(this.input.keys, delta)
         this.enemies.forEach((enemy) => {
             enemy.update(this.input.keys, delta)
+            this.checkCollisions(enemy)
         })
         this.explosions.forEach((explosion) => {
             explosion.update(delta)
@@ -58,7 +57,6 @@ export default class Game {
                 this.explosions.splice(this.explosions.indexOf(explosion), 1)
             }
         })
-        this.checkCollisions()
     }
 
     draw(delta) {
