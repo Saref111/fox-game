@@ -13,6 +13,7 @@ export default class Game {
         this.player = new Player(this)
         this.enemies = [new Enemy(this),new Enemy(this), new Enemy(this)]
         this.input = new InputHandler()
+        this.explosions = []
     }
 
     update(delta) {
