@@ -18,6 +18,11 @@ export default class Game {
         this.fragsCount = 0
         this.input = new InputHandler()
         this.explosions = []
+
+        this.bgSound = document.querySelector('#bg-sound')
+        this.bgSound.loop = true
+        this.bgSound.volume = 0.7
+        this.bgSound.play()
     }
 
     checkCollisions(enemy) { 

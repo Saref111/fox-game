@@ -59,6 +59,7 @@ export class Jumping extends State {
     }
 
     enter() {
+        this.player.jumpSound.play()
         this.player.frameX = 0
         this.player.maxFrame = SpriteFramesCount.JUMPING
         this.player.frameY = SpritePositions.JUMPING
@@ -90,7 +91,8 @@ export class Falling extends State {
     }
 
     handleInput(keys) {
-        if (this.player.isOnTheGround()) {
+        if (this.player.isOnTheGround()) {            
+            this.player.fallSound.play()
             this.player.setState(StateEnum.RUNNING, 1)
         }else if (keys.has(Keys.DOWN)) {
             this.player.setState(StateEnum.ATTACK, 2)
@@ -105,6 +107,7 @@ export class Attack extends State {
     }
 
     enter() {
+        this.player.attackSound.play()
         this.player.frameX = 0
         this.player.maxFrame = SpriteFramesCount.ATTACK
         this.player.frameY = SpritePositions.ATTACK

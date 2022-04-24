@@ -27,6 +27,12 @@ export default class Player {
         this.maxSpeed = Chars.MAX_SPEED
         this.states = states.map((It) => new It(this))
         this.setState(StateEnum.SITTING, 0)
+        this.jumpSound = new Audio()
+        this.fallSound = new Audio()
+        this.attackSound = new Audio()
+        this.jumpSound.src = '../assets/swish_2.wav'
+        this.fallSound.src = '../assets/jumpland.wav'
+        this.attackSound.src = '../assets/swish_3.wav'
     }
 
     toggleFrame() { 

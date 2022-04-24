@@ -16,6 +16,8 @@ export default class Explosion {
         this.states = {}
         this.sizeMultiplier = sizeMultiplier
         this.angle = Math.random() * 6.2
+        this.sound = new Audio()
+        this.sound.src = '../assets/boom.wav'
     }
 
     toggleFrame() {
@@ -27,6 +29,10 @@ export default class Explosion {
     }
 
     update(delta) {
+        if (this.frameX === 0) {
+            this.sound.play()
+        }
+
         this.frameTimer += delta
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0
