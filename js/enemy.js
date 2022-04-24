@@ -7,7 +7,7 @@ export default class Enemy {
         this.game = game
         this.x = getRandomNumber(this.game.width  - Chars.WIDTH)
         this.y = getRandomNumber(this.game.height / 2 - Chars.WIDTH)
-        this.width = 293
+        this.width = 293 
         this.height = 155
         this.speed = getRandomNumber(2, -2)
         while (this.speed === 0) {
@@ -17,6 +17,7 @@ export default class Enemy {
         this.frameX = 0
         this.frameY = 0
         this.maxFrame = 5
+        this.sizeMultiplier = getRandomNumber(9, 2) / 10
         this.frameCount = 0
         this.frameTimer = 0
         this.frameInterval = 1000 / FPS
@@ -24,7 +25,6 @@ export default class Enemy {
         this.state = null
         this.states = {}
         this.flapSpeed = getRandomNumber(4, 1)
-        this.sizeMultiplier = getRandomNumber(9, 2) / 10
         this.amendPosition()
 
         console.log(this);
@@ -61,8 +61,7 @@ export default class Enemy {
     }
     update(keys, delta) {
         this.x += this.speed 
-        this.y += this.speed 
-        // this.amendPosition()
+        this.y += this.speed
         
         if (this.isOutOfBounds()) {
             this.speed *= -1
@@ -83,12 +82,12 @@ export default class Enemy {
             this.image, 
             this.frameX * this.width, 
             this.frameY * this.height, 
-            this.width, 
+            this.width , 
             this.height, 
             this.x, 
             this.y, 
             this.width * this.sizeMultiplier, 
-            this.height  * this.sizeMultiplier
+            this.height * this.sizeMultiplier
         );
     }
 } 

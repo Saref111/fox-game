@@ -98,6 +98,22 @@ export default class Player {
         return this.y + this.height >= this.game.height - Chars.BASE_Y_POSITION
     }
 
+    checkCollision(object) {
+        return (
+            this.x < object.x + object.width * object.sizeMultiplier &&
+            this.x + this.width > object.x &&
+            this.y < object.y + object.height * object.sizeMultiplier &&
+            this.y + this.height > object.y
+        )
+    }
+
+    reset() {
+        this.x = Chars.BASE_X_POSITION
+        this.y = this.game.height - this.height - Chars.BASE_Y_POSITION
+        this.velocity = 0
+        this.setState(StateEnum.SITTING, 0)
+    }
+
     moveY(keys) {
         const onGround = this.isOnTheGround()
         
