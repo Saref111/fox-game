@@ -44,7 +44,25 @@ body {
         "left sit-attack right";
 }
 
+.controls::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0);
+    color: #fff;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    content: "use buttons or arrow keys to play";
 
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
 
 .controls button {
     background-color: #fff;
@@ -56,7 +74,6 @@ body {
 }
 
 .controls button:hover {
-
     background-color: #000;
     color: #fff;
     opacity: 0.5;
@@ -88,4 +105,14 @@ body {
 
 img {
     display: none;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
 }
